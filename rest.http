@@ -7,4 +7,14 @@ GET {{rootUrl}}
 
 
 ### post new user 
-POST {{rootUrl}}/api/v1/auth/register
+POST   {{rootUrl}}/api/v1/auth/register
+Content-Type: application/json
+
+{
+   "fName": "Shailesh",
+   "lName": "Gharti",
+   "email": "s@sgmail.com",
+   "phone": "927382732",
+   "password": "khdfjkhc"
+
+}

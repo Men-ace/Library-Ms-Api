@@ -1,36 +1,36 @@
-import { required, types } from "joi"
+
 import mongoose from "mongoose"
 
 const userSchema = new mongoose.Schema({
     fName:{
-        types: String,
+        type: String,
         required:true
     },
     lName:{
-        types: String,
+        type: String,
         required:true
     },
     role:{
-        types: String,
+        type: String,
         default: "user",
         required:true
     },
     email:{
-        types: String,
+        type: String,
         unique: true,
         index: 1,
        required: true,
     },
     phone:{
-        types: String,
+        type: String,
         required:true
     },
     password:{
-        types: String,
+        type: String,
         required:true
     },
     refreshJWT:{
-        types: String,
+        type: String,
     },
 }, {timestamps:true})
 

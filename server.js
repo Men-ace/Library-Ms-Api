@@ -1,7 +1,7 @@
 //express 
 import express from "express"
 const app = express()
-const PORT = process.env.PORT || 800
+const PORT = process.env.PORT || 8000
 
 //DataBase Connection
 import { dbConnect } from "./src/config/dbConfig.js"
@@ -11,6 +11,7 @@ import { dbConnect } from "./src/config/dbConfig.js"
 import cors from "cors"
 import morgan from 'morgan'
 
+app.use(express.static('public'));
 
 app.use(cors())
 app.use(morgan('dev'))
@@ -18,6 +19,7 @@ app.use(express.json())
 
 // api End Points 
 import authRoute from "./src/routes/authRoute.js"
+import { errorHandler } from "./src/middlewares/errorHandler.js"
 
 app.use("/api/v1/auth", authRoute)
 
@@ -29,6 +31,9 @@ app.get("/", (req, res) => {
         message: "Server is live"
     })
 })
+
+// handling error before starting server
+app.use(errorHandler)
 
 dbConnect().then(()=>{
     app.listen(PORT, (error) => {
