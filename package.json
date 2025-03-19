@@ -2,8 +2,9 @@
   "name": "library-ms-api",
   "version": "1.0.0",
   "main": "server.js",
+  "type": "module",
   "scripts": {
-    "dev": "nodemon server.js",
+    "dev": "nodemon --env-file=.env server.js",
     "start": "node server.js"
   },
   "keywords": [],
