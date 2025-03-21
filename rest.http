@@ -13,7 +13,7 @@ Content-Type: application/json
 {
    "fName": "Shailesh",
    "lName": "Gharti",
-   "email": "s1@sgmail.com",
+   "email": "s3@sgmail.com",
    "phone": "927382732",
    "password": "khdfjkhc"
 

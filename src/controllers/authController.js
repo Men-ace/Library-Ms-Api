@@ -5,6 +5,7 @@ import { createNewUser } from "../models/user/UserModel.js"
 import { hashPassword } from "../utils/bcrypt.js"
 import next from "express"
 import { v4 as uuidv4 } from 'uuid';
+import { userActivationUrlEmail } from "../services/email/emailServices.js";
 export const insertNewUser = async(req, res, next) => {
     try {
         //to so signup process 
@@ -29,18 +30,23 @@ export const insertNewUser = async(req, res, next) => {
              const session =  await createNewSession(newSessionObj)
 
              if(session?._id){
-                const url = "http//:localhost:5371?sessionId="+session._id+"&t="+session.token
+                const url = `${process.env.ROOT_URL}/activate-user?sessionId=${session._id}&t=${session}`
 
-                console.log(url)
-                const message  = " we have sent you an email with activation link, Please chexk your email and follow the instruction to activate your account"
+                  // send this url to their email
+               
+               const emailId = userActivationUrlEmail({
+                    email: user.email ,
+                    url,
+                    name: user.fname,
+                })
 
-                return responseClient({req, res, message})
+                if(emailId){
+                    const message  = " we have sent you an email with activation link, Please check your email and follow the instruction to activate your account"
 
-                // send this url to their email
+                    return responseClient({req, res, message})
+                }
+              
              }
-
-
-
         }
 
 

@@ -1,10 +1,10 @@
-export const userActivationUrlEmail = ({email, name, url })=>{
-    const obj  =  {
+export const userActivationUrlEmailTemplate = ({email, name, url })=>{
+   return {
         from: `"Local library" <${process.env.SMTP_EMAIL}>`, // sender address
     to:email, // list of receivers
     subject: "Hello ✔", // Subject line
     text: `
-    Hello ${name} follow the link to activate your account
+    Hello ${name} follow the link to activate your account.${url}
     `, // plain text body
     html: `
        <p> Hedllo ${name}</p>
