@@ -20,6 +20,7 @@ app.use(express.json())
 // api End Points 
 import authRoute from "./src/routes/authRoute.js"
 import { errorHandler } from "./src/middlewares/errorHandler.js"
+import { responseClient } from "./src/middlewares/responseClient.js"
 
 app.use("/api/v1/auth", authRoute)
 
@@ -27,9 +28,8 @@ app.use("/api/v1/auth", authRoute)
 
 //server status
 app.get("/", (req, res) => {
-    res.json({
-        message: "Server is live"
-    })
+        const message = "Server is live"
+        responseClient({req, res, message})
 })
 
 // handling error before starting server
