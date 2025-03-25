@@ -1,6 +1,6 @@
 
 import { responseClient } from "../middlewares/responseClient.js";
-import { createNewSession } from "../models/session/SessionModel.js"
+import { createNewSession, deleteSession } from "../models/session/SessionModel.js"
 import { createNewUser } from "../models/user/UserModel.js"
 import { hashPassword } from "../utils/bcrypt.js"
 import next from "express"
@@ -71,6 +71,11 @@ export const activateUser = async (req, res, next) =>{
         const {sessionId, t} = req.body
         console.log(sessionId)
 
+
+        const session = await deleteSession({
+            _id: sessionId,
+            token: t, 
+        })
         const message =  "TODO activate user process"
         return responseClient({req, res, message})
 

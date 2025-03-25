@@ -18,3 +18,21 @@ Content-Type: application/json
    "password": "khdfjkhc"
 
 }
+
+
+@rootUrl = http://localhost:8000
+
+GET {{rootUrl}}
+
+
+### auth api 
+
+
+### post activate new-user 
+POST   {{rootUrl}}/api/v1/auth/activate-user
+Content-Type: application/json
+
+{
+ "sessionId": "67e23a27d4b59694a0d6a117&te",
+ "t": "51facaa3-fb02-499c-9b5a-590d096524fe"
+}
