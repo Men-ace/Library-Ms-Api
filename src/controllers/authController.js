@@ -1,7 +1,7 @@
 
 import { responseClient } from "../middlewares/responseClient.js";
 import { createNewSession, deleteSession } from "../models/session/SessionModel.js"
-import { createNewUser } from "../models/user/UserModel.js"
+import { createNewUser, updateUser } from "../models/user/UserModel.js"
 import { hashPassword } from "../utils/bcrypt.js"
 import next from "express"
 import { v4 as uuidv4 } from 'uuid';
@@ -76,10 +76,22 @@ export const activateUser = async (req, res, next) =>{
             _id: sessionId,
             token: t, 
         })
-        const message =  "TODO activate user process"
-        return responseClient({req, res, message})
 
+        if(session?._id){
+            // update user to active
 
+            const user = await updateUser({email:session.association}, {status:"active"})
+
+            if(user?._id){
+                // send email notification 
+
+                    userActivatedNotificationEmail({email:user.email, name:user.fName})
+
+                    const message =  "Your account has been activated, you may log in Now!"
+                    return responseClient({req, res, message})
+
+            }
+        }
     } catch (error) {
        next(error) 
     }

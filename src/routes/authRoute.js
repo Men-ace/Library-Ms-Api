@@ -8,7 +8,5 @@ const router = express.Router()
 router.post("/register", insertNewUser)
 router.post("/activate-user", activateUser)
 
-   
-
 
 export default router

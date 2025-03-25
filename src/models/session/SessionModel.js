@@ -5,6 +5,8 @@ export const createNewSession = (SessionObj) =>{
     return SessionSchema(SessionObj).save()
 }
 
+
+//Delete a new Session
 export const deleteSession = (filter) =>{
     return SessionSchema.findOneAndDelete(filter)
 }
