@@ -63,3 +63,19 @@ export const insertNewUser = async(req, res, next) => {
         next(error)
     }
 }
+
+
+
+export const activateUser = async (req, res, next) =>{
+    try {
+        const {sessionId, t} = req.body
+        console.log(sessionId)
+
+        const message =  "TODO activate user process"
+        return responseClient({req, res, message})
+
+
+    } catch (error) {
+       next(error) 
+    }
+}
