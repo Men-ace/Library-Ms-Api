@@ -1,13 +1,19 @@
 import SessionSchema from "./SessionSchema.js";
 
-//insert a new Session
-export const createNewSession = (SessionObj) =>{
-    return SessionSchema(SessionObj).save()
-}
+// insert new session
+export const createNewSession = (sessionObj) => {
+  return SessionSchema(sessionObj).save();
+};
 
+export const deleteSession = (filter) => {
+  return SessionSchema.findOneAndDelete(filter);
+};
 
-//Delete a new Session
-export const deleteSession = (filter) =>{
-    return SessionSchema.findOneAndDelete(filter)
-}
+export const deleteManySessions = (filter) => {
+  console.log(filter, "-------");
+  return SessionSchema.deleteMany(filter);
+};
 
+export const getSession = (filter) => {
+  return SessionSchema.findOne(filter);
+};
